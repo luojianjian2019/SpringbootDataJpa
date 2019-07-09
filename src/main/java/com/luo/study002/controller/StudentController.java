@@ -3,6 +3,7 @@ package com.luo.study002.controller;
 import com.luo.study002.controller.response.StudentResponse;
 import com.luo.study002.entity.StudentInfo;
 import com.luo.study002.service.StudentService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,6 +27,7 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    @ApiOperation(value="获取学生信息", notes="分页查询学生信息")
     @RequestMapping(value = "getStudentByPage",method = RequestMethod.GET)
     @ResponseBody
     public List<StudentInfo> getStudentPage(int pageNo){
@@ -35,6 +37,7 @@ public class StudentController {
         return studentInfoPage.getContent();
     }
 
+    @ApiOperation(value="获取学生信息", notes="特殊分页查询学生信息")
     @RequestMapping(value = "getStudentByPageSpec",method = RequestMethod.GET)
     @ResponseBody
     public List<StudentInfo> getStudentPageSpec(int pageNo,@RequestBody StudentInfo studentInfo){
@@ -44,6 +47,7 @@ public class StudentController {
         return studentInfoPage.getContent();
     }
 
+    @ApiOperation(value="新增", notes="新增一条学生数据")
     @RequestMapping(value = "add",method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<String> addStudent(@RequestBody StudentInfo studentInfo){
